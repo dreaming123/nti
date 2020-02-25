@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>导入物料程序返回结果</title>
+</head>
+<body>
+
+<h1 style="color: red"><span th:text="${res.msg}" style="color: aquamarine"  ></span>,以下基础数据没有导入成功</h1>
+  <table border="1">
+      <!--  <h1 th:text="${res.getData()}"></h1>-->
+  <tr>
+      <td>name</td>
+      <td>code</td>
+      <td>cadno</td>
+      <td>samecode</td>
+      <td>exteriorcode</td>
+      <td>price</td>
+  </tr>
+
+
+      <tr th:each="data:${res.getData()}">
+
+          <td th:text="${data.name}" style="color: brown;font-size: 20px"></td>
+          <td th:text="${data.code}" style="color: brown;font-size: 20px"></td>
+          <td th:text="${data.cadno}" style="color: brown;font-size: 20px"></td>
+          <td th:text="${data.samecode}" style="color: brown;font-size: 20px"></td>
+          <td th:text="${data.exteriorcode}" style="color: brown;font-size: 20px"></td>
+          <td th:text="${data.price}" style="color: brown;font-size: 20px"></td>
+
+      </tr>
+
+  </table>
+</body>
+
+ <style>
+ .ads{
+     color: aquamarine;
+ }
+
+ </style>
+</html>

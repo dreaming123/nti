@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcz.dao.MUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jcz.entity.MUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, age, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from muser
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from muser
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jcz.entity.MUser" >
+    insert into jcz (id, name, age,
+      address)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcz.entity.MUser" >
+    insert into muser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcz.entity.MUser" >
+    update muser
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcz.entity.MUser" >
+    update muser
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectShipper"  parameterType="java.lang.String" resultType="java.lang.Integer"  >
+     select count(1) from shipper where  name = #{name,jdbcType=VARCHAR}
+
+  </select>
+  <insert id="insertShipper" parameterType="java.lang.String"  >
+      insert  into shipper (shipperid,name) values (sys_guid(),#{name,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertItems" parameterType="com.jcz.entity.Item"  >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code!= null" >
+        code,
+      </if>
+      <if test="exteriorcode != null" >
+        exteriorcode,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="unitid != null" >
+        unitid,
+      </if>
+      <if test="statecode != null" >
+        statecode,
+      </if>
+      <if test="samecode != null" >
+        samecode,
+      </if>
+      <if test="cadno != null" >
+        cadno,
+      </if>
+      <if test="containeritemid != null" >
+        containeritemid,
+      </if>
+      <if test="typecode != null" >
+        typecode,
+      </if>
+      <if test="warehouseid != null" >
+        warehouseid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="exteriorcode != null" >
+        #{exteriorcode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=VARCHAR},
+      </if>
+
+      <if test="statecode != null" >
+        #{statecode,jdbcType=VARCHAR},
+      </if>
+      <if test="samecode != null" >
+        #{samecode,jdbcType=VARCHAR},
+      </if>
+      <if test="cadno != null" >
+        #{cadno,jdbcType=VARCHAR},
+      </if>
+      <if test="containeritemid != null" >
+        #{containeritemid,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseid != null" >
+        #{warehouseid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+   <select id="checkItem" parameterType="com.jcz.entity.Item" resultType="java.lang.Integer">
+       select  count(1) from  item  where 1 = 1
+     <if test="code != null" >
+      and  code=#{code,jdbcType=VARCHAR}
+     </if>
+
+
+   </select>
+
+   <select id="getUnitByName"  parameterType="java.lang.String" resultType="java.lang.String">
+      select  unitid  from  itemunit  where cname= #{name,jdbcType=VARCHAR}
+
+   </select>
+</mapper>
