@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.jcz.dao.MUserMapper;
 import com.jcz.model.Rest_M;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +21,12 @@ import java.util.List;
 public class Test {
    // @Autowired
    // private MUserServiceI muserService;
+  // private RedisTemplate<String,String> redisTemplate;
 
     @Autowired
     public MUserMapper mum;
+//    @Autowired
+//    StringRedisTemplate stringRedisTemplate;
 
 
     //上传基本数据
@@ -74,11 +78,12 @@ public class Test {
      }
 
 
-    @RequestMapping("/tt")
+    @RequestMapping("/redis")
     @ResponseBody
     public String test1() {
-        System.out.print("执行了test");
-        return "123321";
+//        redisTemplate.opsForValue().set("myKey","myValue");
+//        System.out.println(redisTemplate.opsForValue().get("myKey"));
+           return  "dsa";
     }
 
 

@@ -20,15 +20,9 @@
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <!--整合Thymeleaf-->
@@ -75,6 +69,7 @@
             <version>8.0.17</version>
             <scope>runtime</scope>
         </dependency>
+
         <!--        oracle的驱动 -->
         <dependency>
             <groupId>com.oracle</groupId>
@@ -97,6 +92,28 @@
             <artifactId>poi</artifactId>
             <version>3.9</version>
         </dependency>
+
+        <!--redis启动器-->
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.1.RELEASE</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>io.lettuce</groupId>-->
+<!--                    <artifactId>lettuce-core</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+<!--        <dependency>-->
+<!--            <groupId>redis.clients</groupId>-->
+<!--            <artifactId>jedis</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--        </dependency>-->
+
 
 
     </dependencies>
